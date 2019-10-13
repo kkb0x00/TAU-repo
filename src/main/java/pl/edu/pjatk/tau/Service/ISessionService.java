@@ -8,7 +8,7 @@ import java.util.Map;
 
 interface ISessionService<IElement> {
 
-    IElement get(int id);
+    IElement get(int id) throws InvalidIdException;
     List<IElement> getAll();
     void add(int id, IElement element) throws InvalidIdException;
     void update(int id, IElement element) throws InvalidIdException;
