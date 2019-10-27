@@ -1,13 +1,14 @@
 package pl.edu.pjatk.tau.Service;
 
 import pl.edu.pjatk.tau.Domain.IOTimes;
+import pl.edu.pjatk.tau.Enums.DateTypes;
+
 import java.time.LocalDateTime;
 
 public class IOTimesService {
-
-    boolean isInsertTimeEnabled = true;
-    boolean isLastUpdateTimeEnabled = true;
-    boolean isLastReadTimeEnabled = true;
+    private boolean isInsertTimeEnabled = true;
+    private boolean isLastUpdateTimeEnabled = true;
+    private boolean isLastReadTimeEnabled = true;
 
     public LocalDateTime getCurrentTime() {
         return LocalDateTime.now();
@@ -18,7 +19,6 @@ public class IOTimesService {
             ioTimes.setInsertTime(getCurrentTime());
         }
     }
-
 
     public void setlastUpdateTime(IOTimes ioTimes) {
         if(isLastUpdateTimeEnabled) {
@@ -33,7 +33,6 @@ public class IOTimesService {
         }
     }
 
-
     public IOTimes getIOTimesForRecord(IOTimes ioTimesGiven) {
 
         IOTimes times = new IOTimes();
@@ -45,6 +44,35 @@ public class IOTimesService {
         return times;
     }
 
+    boolean getIODateState(DateTypes type) {
+        switch (type) {
+            case INSERT_TIME:
+                return isInsertTimeEnabled;
 
+            case LAST_READ_TIME:
+                return isLastReadTimeEnabled;
 
+            case LAST_UPDATE_TIME:
+                return isLastUpdateTimeEnabled;
+
+            default:
+                return false;
+        }
+    }
+
+    void toggle(DateTypes type) {
+        switch (type) {
+            case INSERT_TIME:
+                isInsertTimeEnabled = !isInsertTimeEnabled;
+                break;
+            case LAST_READ_TIME:
+                isLastReadTimeEnabled = !isLastReadTimeEnabled;
+                break;
+            case LAST_UPDATE_TIME:
+                isLastUpdateTimeEnabled = !isLastUpdateTimeEnabled;
+                break;
+            default:
+        }
+    }
 }
+
