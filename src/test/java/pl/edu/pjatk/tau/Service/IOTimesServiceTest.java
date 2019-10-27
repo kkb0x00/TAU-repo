@@ -3,8 +3,11 @@ package pl.edu.pjatk.tau.Service;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pl.edu.pjatk.tau.Domain.IOTimes;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 public class IOTimesServiceTest {
@@ -39,4 +42,16 @@ public class IOTimesServiceTest {
 
         Assert.assertEquals(session.getLastUpdateTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
     }
+
+    @Test
+    public void shouldGetIOTimesRecordTest() {
+        IOTimes times = ioTimesService.getIOTimesForRecord(session);
+
+        verify(ioTimesService, never()).getCurrentTime();
+
+        Assert.assertEquals(times.getLastReadTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
+        Assert.assertEquals(times.getInsertTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
+        Assert.assertEquals(times.getLastUpdateTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
+    }
+
 }
