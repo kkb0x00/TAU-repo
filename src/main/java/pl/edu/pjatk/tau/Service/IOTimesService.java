@@ -1,7 +1,6 @@
 package pl.edu.pjatk.tau.Service;
 
 import pl.edu.pjatk.tau.Domain.IOTimes;
-
 import java.time.LocalDateTime;
 
 public class IOTimesService {
@@ -22,6 +21,18 @@ public class IOTimesService {
 
     public void setlastReadTime(IOTimes ioTimes) {
         ioTimes.setLastReadTime(getCurrentTime());
+    }
+
+
+    public IOTimes getIOTimesForRecord(IOTimes ioTimesGiven) {
+
+        IOTimes times = new IOTimes();
+
+        times.setInsertTime(ioTimesGiven.getInsertTime());
+        times.setLastReadTime(ioTimesGiven.getLastReadTime());
+        times.setLastUpdateTime(ioTimesGiven.getLastReadTime());
+
+        return times;
     }
 
 

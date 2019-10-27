@@ -2,7 +2,7 @@ package pl.edu.pjatk.tau.Domain;
 
 import java.time.LocalDateTime;
 
-public abstract class IOTimes {
+public class IOTimes {
     private LocalDateTime insertTime;
     private LocalDateTime lastUpdateTime;
     private LocalDateTime lastReadTime;
