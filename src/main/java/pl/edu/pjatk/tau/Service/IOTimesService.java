@@ -5,22 +5,32 @@ import java.time.LocalDateTime;
 
 public class IOTimesService {
 
+    boolean isInsertTimeEnabled = true;
+    boolean isLastUpdateTimeEnabled = true;
+    boolean isLastReadTimeEnabled = true;
+
     public LocalDateTime getCurrentTime() {
         return LocalDateTime.now();
     }
 
     public void setInsertTime(IOTimes ioTimes) {
-        ioTimes.setInsertTime(getCurrentTime());
+        if(isInsertTimeEnabled) {
+            ioTimes.setInsertTime(getCurrentTime());
+        }
     }
 
 
     public void setlastUpdateTime(IOTimes ioTimes) {
-        ioTimes.setLastUpdateTime(getCurrentTime());
+        if(isLastUpdateTimeEnabled) {
+            ioTimes.setLastUpdateTime(getCurrentTime());
+        }
+
     }
 
-
     public void setlastReadTime(IOTimes ioTimes) {
-        ioTimes.setLastReadTime(getCurrentTime());
+        if(isLastReadTimeEnabled) {
+            ioTimes.setLastReadTime(getCurrentTime());
+        }
     }
 
 
@@ -34,6 +44,7 @@ public class IOTimesService {
 
         return times;
     }
+
 
 
 }

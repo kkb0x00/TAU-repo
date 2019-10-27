@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import pl.edu.pjatk.tau.Domain.IOTimes;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
+import pl.edu.pjatk.tau.Exceptions.InvalidIODateTypeException;
+
 import java.time.LocalDateTime;
 
 import static org.mockito.Mockito.*;
@@ -59,5 +61,49 @@ public class IOTimesServiceTest {
         Assert.assertEquals(times.getLastReadTime(), TEST_DATE);
         Assert.assertEquals(times.getLastUpdateTime(), TEST_DATE);
     }
+
+    @Test
+    public void shouldAllDatesBeEnabledByDefaultTest() {
+
+        Assert.assertEquals(ioTimesService.getIODateState("InsertTime"), true);
+        Assert.assertEquals(ioTimesService.getIODateState("LastUpdateTime"), true);
+        Assert.assertEquals(ioTimesService.getIODateState("LastReadTime"), true);
+    }
+
+    @Test
+    public void shouldDisableInsertTimeTest() {
+        ioTimesService.toggle("InsertTime");
+
+        Assert.assertEquals(ioTimesService.getDateState("InsertTime"), false);
+    }
+
+    @Test
+    public void shouldDisableLastUpdateTimeTest() {
+        ioTimesService.toggle("LastUpdateTime");
+
+        Assert.assertEquals(ioTimesService.getDateState("LastUpdateTime"), false);
+    }
+
+    @Test
+    public void shouldDisableLastReadTimeTest() {
+        ioTimesService.toggle("LastReadTime");
+
+        Assert.assertEquals(ioTimesService.getDateState("LastReadTime"), false);
+    }
+
+    @org.junit.Test(expected = InvalidIODateTypeException.class)
+    public void shouldDisableLastReadTime() throws InvalidIODateTypeException {
+        ioTimesService.toggle("invalid");
+    }
+
+//    @Test
+//    public void shouldNotAddInsertTimeTest() {
+//
+//
+//        ioTimesService.setlastReadTime(session);
+//
+//        Assert.assertEquals(session.getLastReadTime(), null);
+//    }
+
 
 }
