@@ -1,37 +1,42 @@
 package pl.edu.pjatk.tau.Service;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import pl.edu.pjatk.tau.Domain.IOTimes;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
-
-import java.util.HashMap;
-
-import static org.junit.Assert.*;
+import java.time.LocalDateTime;
+import static org.mockito.Mockito.*;
 
 public class IOTimesServiceTest {
-
-    @Mock
-    private IOTimesService timesService;
+    private IOTimesService ioTimesService;
+    private PentestingSession session;
 
     @Before
     public void setUp() {
-    }
+        ioTimesService = spy(IOTimesService.class);
+        when(ioTimesService.getCurrentTime()).thenReturn(LocalDateTime.of(2019, 10, 25, 15, 56));
 
-
-    @Test
-    public void shouldSetInsertTime() {
-
-
-
+        session = new PentestingSession(30, 1);
     }
 
     @Test
-    public void setlastUpdateTime() {
+    public void shouldSetInsertTimeInSessionInstanceTest() {
+        ioTimesService.setInsertTime(session);
+
+        Assert.assertEquals(session.getInsertTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
     }
 
     @Test
-    public void setlastReadTime() {
+    public void shouldSetLastReadTimeInSessionInstanceTest() {
+        ioTimesService.setlastReadTime(session);
+
+        Assert.assertEquals(session.getLastReadTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
+    }
+
+    @Test
+    public void shouldSetLastUpdateTimeInSessionInstanceTest() {
+        ioTimesService.setlastUpdateTime(session);
+
+        Assert.assertEquals(session.getLastUpdateTime(), LocalDateTime.of(2019, 10, 25, 15, 56));
     }
 }
