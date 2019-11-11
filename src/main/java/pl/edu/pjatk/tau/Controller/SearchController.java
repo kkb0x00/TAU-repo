@@ -15,8 +15,6 @@ public class SearchController {
     }
 
     public List<PentestingSession> searchByRegexp(String regexp) {
-        Pattern p = Pattern.compile(regexp);
-
         List<PentestingSession> sessions = pentestSessionService.getAll();
         List<PentestingSession> matched = new ArrayList<>();
 
@@ -24,7 +22,7 @@ public class SearchController {
             String title = session.getTitle();
             String riskType = session.getRiskType();
 
-            if(p.matcher(title).matches() || p.matcher(riskType).matches()) {
+            if(Pattern.matches(regexp, title) || Pattern.matches(regexp, riskType)) {
                matched.add(session);
             }
         }
