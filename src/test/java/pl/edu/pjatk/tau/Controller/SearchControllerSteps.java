@@ -11,6 +11,7 @@ import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
+import pl.edu.pjatk.tau.Repository.PentestRepository;
 import pl.edu.pjatk.tau.Service.IOTimesService;
 import pl.edu.pjatk.tau.Service.PentestingSessionService;
 
@@ -27,7 +28,7 @@ public class SearchControllerSteps {
     @Given("a search functionality with initial data: $table")
     public void searchControllerSetup(ExamplesTable table){
         PentestingSessionService sessionsService = new PentestingSessionService(
-                toPentestSessionsHashMap(table),
+                new PentestRepository(toPentestSessionsList(table)),
                 new IOTimesService()
         );
 
@@ -47,37 +48,18 @@ public class SearchControllerSteps {
         assertTrue(new ReflectionEquals(expected).matches(actual));
     }
 
-    private HashMap<Integer, PentestingSession> toPentestSessionsHashMap(ExamplesTable table) {
-        HashMap<Integer, PentestingSession> sessions = new HashMap<>();
-        int position = 0;
-
-        for (Map<String,String> row : table.getRows()) {
-            String title = row.get("title");
-            String riskType = row.get("riskType");
-            int time = Integer.parseInt(row.get("time"));
-            float weight = Float.parseFloat(row.get("weight"));
-
-            PentestingSession session = new PentestingSession(title);
-            session.setRiskType(riskType);
-            session.setTimeInMinutes(time);
-            session.setWeight(weight);
-
-            sessions.put(position++, session);
-        }
-
-        return sessions;
-    }
-
     private List<PentestingSession> toPentestSessionsList(ExamplesTable table) {
         List<PentestingSession> sessions = new ArrayList<>();
 
         for (Map<String,String> row : table.getRows()) {
+            int id = Integer.parseInt(row.get("id"));
             String title = row.get("title");
             String riskType = row.get("riskType");
             int time = Integer.parseInt(row.get("time"));
             float weight = Float.parseFloat(row.get("weight"));
 
             PentestingSession session = new PentestingSession(title);
+            session.setId(id);
             session.setRiskType(riskType);
             session.setTimeInMinutes(time);
             session.setWeight(weight);

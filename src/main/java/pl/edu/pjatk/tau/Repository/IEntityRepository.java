@@ -1,14 +1,12 @@
 package pl.edu.pjatk.tau.Repository;
 
-import pl.edu.pjatk.tau.Exceptions.InvalidIdException;
-
 import java.util.List;
 
 public interface IEntityRepository<TEntity> {
 
-    TEntity get(int id) throws InvalidIdException;
+    TEntity get(int id);
     List<TEntity> getAll();
-    void add(TEntity element) throws InvalidIdException;
-    void update(TEntity element) throws InvalidIdException;
-    void delete(int id) throws InvalidIdException;
+    void add(TEntity element);
+    void update(TEntity element);
+    void delete(int id);
 }
