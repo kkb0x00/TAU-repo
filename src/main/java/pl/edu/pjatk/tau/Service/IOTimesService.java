@@ -1,7 +1,7 @@
 package pl.edu.pjatk.tau.Service;
 
 import pl.edu.pjatk.tau.Domain.IOTimes;
-import pl.edu.pjatk.tau.Enums.DateTypes;
+import pl.edu.pjatk.tau.Enums.DateType;
 
 import java.time.LocalDateTime;
 
@@ -44,7 +44,7 @@ public class IOTimesService {
         return times;
     }
 
-    boolean getIODateState(DateTypes type) {
+    boolean getIODateState(DateType type) {
         switch (type) {
             case INSERT_TIME:
                 return isInsertTimeEnabled;
@@ -60,7 +60,7 @@ public class IOTimesService {
         }
     }
 
-    void toggle(DateTypes type) {
+    void toggle(DateType type) {
         switch (type) {
             case INSERT_TIME:
                 isInsertTimeEnabled = !isInsertTimeEnabled;

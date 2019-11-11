@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pl.edu.pjatk.tau.Domain.IOTimes;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
-import pl.edu.pjatk.tau.Enums.DateTypes;
+import pl.edu.pjatk.tau.Enums.DateType;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +22,7 @@ public class IOTimesServiceTest {
         ioTimesService = spy(IOTimesService.class);
         when(ioTimesService.getCurrentTime()).thenReturn(TEST_DATE);
 
-        session = new PentestingSession(30, 1);
+        session = new PentestingSession("test");
     }
 
     @Test
@@ -63,30 +63,30 @@ public class IOTimesServiceTest {
 
     @Test
     public void shouldAllDatesBeEnabledByDefaultTest() {
-        Assert.assertTrue(ioTimesService.getIODateState(DateTypes.INSERT_TIME));
-        Assert.assertTrue(ioTimesService.getIODateState(DateTypes.LAST_UPDATE_TIME));
-        Assert.assertTrue(ioTimesService.getIODateState(DateTypes.LAST_READ_TIME));
+        Assert.assertTrue(ioTimesService.getIODateState(DateType.INSERT_TIME));
+        Assert.assertTrue(ioTimesService.getIODateState(DateType.LAST_UPDATE_TIME));
+        Assert.assertTrue(ioTimesService.getIODateState(DateType.LAST_READ_TIME));
     }
 
     @Test
     public void shouldDisableInsertTimeTest() {
-        ioTimesService.toggle(DateTypes.INSERT_TIME);
+        ioTimesService.toggle(DateType.INSERT_TIME);
 
-        Assert.assertFalse(ioTimesService.getIODateState(DateTypes.INSERT_TIME));
+        Assert.assertFalse(ioTimesService.getIODateState(DateType.INSERT_TIME));
     }
 
     @Test
     public void shouldDisableLastUpdateTimeTest() {
-        ioTimesService.toggle(DateTypes.LAST_UPDATE_TIME);
+        ioTimesService.toggle(DateType.LAST_UPDATE_TIME);
 
-        Assert.assertFalse(ioTimesService.getIODateState(DateTypes.LAST_UPDATE_TIME));
+        Assert.assertFalse(ioTimesService.getIODateState(DateType.LAST_UPDATE_TIME));
     }
 
     @Test
     public void shouldDisableLastReadTimeTest() {
-        ioTimesService.toggle(DateTypes.LAST_READ_TIME);
+        ioTimesService.toggle(DateType.LAST_READ_TIME);
 
-        Assert.assertFalse(ioTimesService.getIODateState(DateTypes.LAST_READ_TIME));
+        Assert.assertFalse(ioTimesService.getIODateState(DateType.LAST_READ_TIME));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class IOTimesServiceTest {
 
     @Test
     public void shouldNotAddInsertTimeWhenItIsDisabledTest() {
-        ioTimesService.toggle(DateTypes.INSERT_TIME);
+        ioTimesService.toggle(DateType.INSERT_TIME);
         ioTimesService.setInsertTime(session);
 
         Assert.assertNull(session.getInsertTime());
