@@ -1,4 +1,4 @@
-package pl.edu.pjatk.tau.Controller;
+package bdd.jBehave;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -9,7 +9,7 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 
-public class SearchControllerTest extends JUnitStory {
+public class SearchTest extends JUnitStory {
 
     // Here we specify the configuration, starting from default
     // MostUsefulConfiguration, and changing only what is needed
@@ -29,6 +29,6 @@ public class SearchControllerTest extends JUnitStory {
     @Override
     public InjectableStepsFactory stepsFactory() {
         // varargs, can have more that one steps classes
-        return new InstanceStepsFactory(configuration(), new SearchControllerSteps());
+        return new InstanceStepsFactory(configuration(), new SearchTestSteps());
     }
 }
