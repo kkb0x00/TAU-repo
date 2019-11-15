@@ -60,7 +60,7 @@ public class SearchTestSteps {
             PentestingSession session = new PentestingSession(title);
             session.setId(id);
             session.setRiskType(riskType);
-            session.setTimeInMinutes(time);
+            session.setTime(time);
             session.setWeight(weight);
 
             sessions.add(session);
