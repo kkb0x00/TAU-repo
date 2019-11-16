@@ -9,11 +9,9 @@ import pl.edu.pjatk.tau.Controller.PentestController;
 import pl.edu.pjatk.tau.Controller.SearchController;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
 import pl.edu.pjatk.tau.Repository.PentestRepository;
-import pl.edu.pjatk.tau.Service.IOTimesService;
+import pl.edu.pjatk.tau.Service.DBTimeService;
 import pl.edu.pjatk.tau.Service.PentestingSessionService;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
@@ -29,7 +27,7 @@ public class Stepdefs {
     public void initial_data(List<PentestingSession> sessions) {
         sessionsService = new PentestingSessionService(
                 new PentestRepository(sessions),
-                new IOTimesService()
+                new DBTimeService()
         );
     }
 
@@ -56,12 +54,12 @@ public class Stepdefs {
 
     @Then("it should return a list")
     public void it_should_return_a_list(List<PentestingSession> list) {
-//        List<PentestingSession> actual = searchController.searchByRegexp(regexp);
         // nie wiem jak prościej zrobić porównanie dwóch list pod kątem wartości obiektów w nich.
         // niby taka podstawowa rzecz a nigdzie nie ma informacji
 
         int i = 0;
         for (PentestingSession session: list) {
+
             assertEquals(session.getId(), actual.get(i).getId());
             assertEquals(session.getTitle(), actual.get(i).getTitle());
             assertEquals(session.getRiskType(), actual.get(i).getRiskType());

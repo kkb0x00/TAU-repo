@@ -5,7 +5,7 @@ import pl.edu.pjatk.tau.Enums.DateType;
 
 import java.time.LocalDateTime;
 
-public class IOTimesService {
+public class DBTimeService {
     private boolean isInsertTimeEnabled = true;
     private boolean isLastUpdateTimeEnabled = true;
     private boolean isLastReadTimeEnabled = true;

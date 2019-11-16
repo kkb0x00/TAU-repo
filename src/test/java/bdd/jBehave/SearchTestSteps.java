@@ -12,7 +12,7 @@ import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import pl.edu.pjatk.tau.Controller.SearchController;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
 import pl.edu.pjatk.tau.Repository.PentestRepository;
-import pl.edu.pjatk.tau.Service.IOTimesService;
+import pl.edu.pjatk.tau.Service.DBTimeService;
 import pl.edu.pjatk.tau.Service.PentestingSessionService;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class SearchTestSteps {
     public void searchControllerSetup(ExamplesTable table){
         PentestingSessionService sessionsService = new PentestingSessionService(
                 new PentestRepository(toPentestSessionsList(table)),
-                new IOTimesService()
+                new DBTimeService()
         );
 
         searchController = new SearchController(sessionsService);
