@@ -22,7 +22,7 @@ public class IOTimesServiceTest {
         ioTimesService = spy(IOTimesService.class);
         when(ioTimesService.getCurrentTime()).thenReturn(TEST_DATE);
 
-        session = new PentestingSession("test");
+        session = new PentestingSession("test", null);
     }
 
     @Test

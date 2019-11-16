@@ -57,7 +57,7 @@ public class SearchTestSteps {
             int time = Integer.parseInt(row.get("time"));
             float weight = Float.parseFloat(row.get("weight"));
 
-            PentestingSession session = new PentestingSession(title);
+            PentestingSession session = new PentestingSession(title, null);
             session.setId(id);
             session.setRiskType(riskType);
             session.setTime(time);
