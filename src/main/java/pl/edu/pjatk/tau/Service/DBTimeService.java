@@ -1,10 +1,12 @@
 package pl.edu.pjatk.tau.Service;
 
+import org.springframework.stereotype.Service;
 import pl.edu.pjatk.tau.Domain.IOTimes;
 import pl.edu.pjatk.tau.Enums.DateType;
 
 import java.time.LocalDateTime;
 
+@Service
 public class DBTimeService {
     private boolean isInsertTimeEnabled = true;
     private boolean isLastUpdateTimeEnabled = true;
@@ -24,7 +26,6 @@ public class DBTimeService {
         if(isLastUpdateTimeEnabled) {
             ioTimes.setLastUpdateTime(getCurrentTime());
         }
-
     }
 
     public void setlastReadTime(IOTimes ioTimes) {

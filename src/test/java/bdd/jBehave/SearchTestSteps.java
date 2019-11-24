@@ -11,7 +11,6 @@ import org.jbehave.core.model.ExamplesTable;
 import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import pl.edu.pjatk.tau.Controller.SearchController;
 import pl.edu.pjatk.tau.Domain.PentestingSession;
-import pl.edu.pjatk.tau.Repository.PentestRepository;
 import pl.edu.pjatk.tau.Service.DBTimeService;
 import pl.edu.pjatk.tau.Service.PentestingSessionService;
 
@@ -26,10 +25,7 @@ public class SearchTestSteps {
 
     @Given("a search functionality with initial data: $table")
     public void searchControllerSetup(ExamplesTable table){
-        PentestingSessionService sessionsService = new PentestingSessionService(
-                new PentestRepository(toPentestSessionsList(table)),
-                new DBTimeService()
-        );
+        PentestingSessionService sessionsService = new PentestingSessionService();
 
         searchController = new SearchController(sessionsService);
     }
