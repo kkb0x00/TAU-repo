@@ -5,7 +5,6 @@ describe("Validation tests", function () {
     let formMaster = formmaster();
 
     beforeEach(function () {
-        let s = spyOn(console, 'log').and.callThrough();
         let input = document.createElement('input');
         input.setAttribute("id", "input");
         input.setAttribute("type", "text");
