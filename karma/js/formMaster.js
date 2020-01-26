@@ -2,8 +2,8 @@ function isLengthValid(string){
     return string.length < 15 && string.length > 0;
 };
 
-function isAsciiOnly(string){
-    return string.match(/^[a-z0-9]+$/i);
+function isLettersOnly(string){
+    return string.match(/^[a-z]+$/i);
 };
 
 export function formmaster(selector) {
@@ -17,7 +17,7 @@ export function formmaster(selector) {
                 return;
             }
     
-            if(!isAsciiOnly(element.value)) {
+            if(!isLettersOnly(element.value)) {
                 element.classList.add("invalid");
 
                 return;

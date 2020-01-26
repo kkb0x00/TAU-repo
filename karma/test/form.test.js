@@ -1,16 +1,14 @@
 import {formmaster} from '../js/formMaster.js';
 
 
-describe("Validation tests", function () {
+describe("Name input validation tests", function () {
     let formMaster = formmaster();
 
     beforeEach(function () {
-        let s = spyOn(console, 'log').and.callThrough();
         let input = document.createElement('input');
         input.setAttribute("id", "input");
         input.setAttribute("type", "text");
         document.body.appendChild(input)
-        
     });
 
     afterEach(function () {
@@ -27,15 +25,15 @@ describe("Validation tests", function () {
 
     it("should not pass length validator", function () {
         let input = document.getElementById("input");
-        input.textContent = "Krzysieksdfsdfdsfsdfdsfs"
+        input.value = "Krzysieksdfsdfdsfsdfdsfs"
 
         formMaster.validate("#input");
         expect(input.className).toBe("invalid");
     });
 
-    it("should not pass ascii validator", function () {
+    it("should not pass letter validator", function () {
         let input = document.getElementById("input");
-        input.textContent = "H4CKER"
+        input.value = "$53"
 
         formMaster.validate("#input");
         expect(input.className).toBe("invalid");
@@ -43,10 +41,9 @@ describe("Validation tests", function () {
 
     it("should not pass all validators", function () {
         let input = document.getElementById("input");
-        input.textContent = "Tsdfsdfsdfsdf^35*"
+        input.value = "Tsdfsdfsdddfsdf^35*"
 
         formMaster.validate("#input");
         expect(input.className).toBe("invalid");
     });
-
 });
