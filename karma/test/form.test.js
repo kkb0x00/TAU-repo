@@ -31,7 +31,7 @@ describe("Name input validation tests", function () {
         expect(input.className).toBe("invalid");
     });
 
-    it("should not pass letter validator", function () {
+    it("should not pass alphanumeric validator", function () {
         let input = document.getElementById("input");
         input.value = "$53"
 
