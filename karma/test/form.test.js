@@ -33,7 +33,7 @@ describe("Validation tests", function () {
         expect(input.className).toBe("invalid");
     });
 
-    it("should not pass ascii validator", function () {
+    it("should not pass alphanumeric validator", function () {
         let input = document.getElementById("input");
         input.textContent = "H4CKER"
 
